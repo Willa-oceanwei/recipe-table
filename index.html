@@ -128,23 +128,32 @@ createApp({
   components: { Brush, Folder, Document, Box, Search, ArrowLeftBold, ArrowRightBold },
 
   setup() {
-    const iframeUrl = ref("https://color-powder-app.streamlit.app/?tab=recipe");
+    // CONFIG: Change this to your local Streamlit URL for development
+    // const BASE_URL = "http://localhost:8501"; 
+    const BASE_URL = "https://color-powder-app.streamlit.app";
+    
+    const iframeUrl = ref(`${BASE_URL}/?tab=recipe`);
     const isCollapse = ref(false);
 
     const handleSelect = (index) => {
+      let tab = "";
       switch(index){
-        case "1-1": iframeUrl.value = "https://color-powder-app.streamlit.app/?tab=color-powder"; break;
+        case "1-1": tab = "color-powder"; break;
 
-        case "2-1": iframeUrl.value = "https://color-powder-app.streamlit.app/?tab=customer-list"; break;
-        case "2-2": iframeUrl.value = "https://color-powder-app.streamlit.app/?tab=recipe"; break;
+        case "2-1": tab = "customer-list"; break;
+        case "2-2": tab = "recipe"; break;
 
-        case "3-1": iframeUrl.value = "https://color-powder-app.streamlit.app/?tab=production-order"; break;
-        case "3-2": iframeUrl.value = "https://color-powder-app.streamlit.app/?tab=outsourcing"; break;
+        case "3-1": tab = "production-order"; break;
+        case "3-2": tab = "outsourcing"; break;
 
-        case "4-1": iframeUrl.value = "https://color-powder-app.streamlit.app/?tab=inventory"; break;
+        case "4-1": tab = "inventory"; break;
 
-        case "5-1": iframeUrl.value = "https://color-powder-app.streamlit.app/?tab=pantone-table"; break;
-        case "5-2": iframeUrl.value = "https://color-powder-app.streamlit.app/?tab=cross-query"; break;
+        case "5-1": tab = "pantone-table"; break;
+        case "5-2": tab = "cross-query"; break;
+      }
+      
+      if (tab) {
+        iframeUrl.value = `${BASE_URL}/?tab=${tab}`;
       }
     };
 
