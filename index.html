@@ -11,6 +11,7 @@
   <script src="https://unpkg.com/@element-plus/icons-vue/dist/index.iife.min.js"></script>
 
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body { margin: 0; font-family: Arial, sans-serif; }
     #app { display: flex; height: 100vh; overflow: hidden; }
     .menu {
@@ -20,9 +21,11 @@
       transition: width .3s;
       flex-shrink: 0;
       overflow-y: auto;
+      display: flex;
+      flex-direction: column;
     }
     .menu.collapsed { width: 70px; }
-    iframe { flex: 1; border: none; height: 100vh; }
+    iframe { flex: 1; border: none; height: 100vh; width: 100%; }
 
     .menu-header {
       height: 60px;
@@ -33,10 +36,23 @@
       color: #fff;
       border-bottom: 1px solid #3a4750;
       position: relative;
+      flex-shrink: 0;
     }
     .collapse-btn { position: absolute; right: 10px; top: 15px; cursor: pointer; color: #fff; }
-    .el-menu { border-right: none; }
-    .el-menu-item, .el-sub-menu__title { font-size: 16px; }
+    .el-menu { 
+      border-right: none; 
+      flex: 1;
+      overflow-y: auto;
+    }
+    .el-menu-item, .el-sub-menu__title { 
+      font-size: 14px;
+      height: 50px;
+      line-height: 50px;
+    }
+    .el-sub-menu .el-menu-item {
+      min-width: auto;
+      padding-left: 45px !important;
+    }
   </style>
 </head>
 
@@ -146,7 +162,7 @@ createApp({
         case "5-2": tabHash = "#cross-query"; break;
         case "6-1": tabHash = "#backup"; break;
       }
-      const iframe = document.getElementById("appFrame");
+      // 直接更新 iframe 的 URL
       iframeUrl.value = `https://color-powder-app.streamlit.app/${tabHash}`;
     };
 
