@@ -147,7 +147,7 @@ createApp({
         case "6-1": tabHash = "#backup"; break;
       }
       const iframe = document.getElementById("appFrame");
-      iframe.contentWindow.location.hash = tabHash;
+      iframeUrl.value = `https://color-powder-app.streamlit.app/${tabHash}`;
     };
 
     return { iframeUrl, handleSelect, isCollapse };
