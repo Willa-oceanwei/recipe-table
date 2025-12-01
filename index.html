@@ -84,40 +84,47 @@
         default-active="1-1"
         class="el-menu-vertical-demo"
         @select="handleSelect"
-        router
+        background-color="#f5f5f5"
+        text-color="#000000"
+        active-text-color="#dbd818"
       >
-        <el-sub-menu index="1">
-          <template #title><el-icon><ColorPalette /></el-icon> 色粉管理</template>
-          <el-menu-item index="1-1">色粉管理</el-menu-item>
+        <!-- 色粉管理 -->
+        <el-menu-item index="1-1">
+          <el-icon><color-pallete /></el-icon>色粉管理
+        </el-menu-item>
+
+        <!-- 配方管理 -->
+        <el-sub-menu index="2">
+          <template #title><el-icon><document /></el-icon>配方管理</template>
+          <el-menu-item index="2-1">客戶名單</el-menu-item>
+          <el-menu-item index="2-2">配方管理</el-menu-item>
         </el-sub-menu>
 
-        <el-menu-item index="2"><el-icon><User /></el-icon> 客戶</el-menu-item>
-
+        <!-- 生產單管理 -->
         <el-sub-menu index="3">
-          <template #title><el-icon><Document /></el-icon> 配方管理</template>
-          <el-menu-item index="3-1">客戶名單</el-menu-item>
-          <el-menu-item index="3-2">配方管理</el-menu-item>
+          <template #title><el-icon><collection /></el-icon>生產單管理</template>
+          <el-menu-item index="3-1">生產單</el-menu-item>
+          <el-menu-item index="3-2">代工排程</el-menu-item>
         </el-sub-menu>
 
+        <!-- 查詢區 -->
         <el-sub-menu index="4">
-          <template #title><el-icon><Box /></el-icon> 生產管理</template>
-          <el-menu-item index="4-1"><el-icon><Document /></el-icon> 生產單</el-menu-item>
-          <el-menu-item index="4-2"><el-icon><Share /></el-icon> 代工排程</el-menu-item>
+          <template #title><el-icon><search /></el-icon>查詢區</template>
+          <el-menu-item index="4-1">Pantone色號表</el-menu-item>
+          <el-menu-item index="4-2">交叉查詢區</el-menu-item>
         </el-sub-menu>
 
-        <el-menu-item index="5"><el-icon><Search /></el-icon> 查詢區</el-menu-item>
+        <!-- 庫存區 -->
+        <el-menu-item index="5">
+          <el-icon><box /></el-icon>庫存區
+        </el-menu-item>
 
-        <el-sub-menu index="6">
-          <template #title><el-icon><Storage /></el-icon> 庫存管理</template>
-          <el-menu-item index="6-1">期初庫存</el-menu-item>
-          <el-menu-item index="6-2">用量查詢/排行榜</el-menu-item>
-          <el-menu-item index="6-3">庫存查詢</el-menu-item>
-        </el-sub-menu>
-
-        <el-menu-item index="7"><el-icon><ShoppingCart /></el-icon> 採購管理</el-menu-item>
-        <el-menu-item index="8"><el-icon><Money /></el-icon> 銷售管理</el-menu-item>
-        <el-menu-item index="9"><el-icon><Finance /></el-icon> 會計系統</el-menu-item>
-        <el-menu-item index="10"><el-icon><User /></el-icon> 人力資源</el-menu-item>
+        <!-- 其他單獨項目 -->
+        <el-menu-item index="6"><el-icon><shopping-cart /></el-icon>採購管理</el-menu-item>
+        <el-menu-item index="7"><el-icon><coin /></el-icon>銷售管理</el-menu-item>
+        <el-menu-item index="8"><el-icon><document-checked /></el-icon>會計系統</el-menu-item>
+        <el-menu-item index="9"><el-icon><user /></el-icon>人力資源</el-menu-item>
+        <el-menu-item index="10"><el-icon><upload /></el-icon>匯入備份</el-menu-item>
       </el-menu>
     </div>
 
@@ -139,19 +146,18 @@ const app = createApp({
     const handleSelect = (index) => {
       switch(index){
         case '1-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/#color-powder'; break;
-        case '2':   iframeUrl.value = 'https://color-powder-app.streamlit.app/#customer'; break;
-        case '3-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/#customer-list'; break;
-        case '3-2': iframeUrl.value = 'https://color-powder-app.streamlit.app/#recipe'; break;
-        case '4-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/#production-order'; break;
-        case '4-2': iframeUrl.value = 'https://color-powder-app.streamlit.app/#outsourcing'; break;
-        case '5': iframeUrl.value = 'https://color-powder-app.streamlit.app/#cross-query'; break;
-        case '6-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/#initial-stock'; break;
-        case '6-2': iframeUrl.value = 'https://color-powder-app.streamlit.app/#usage-ranking'; break;
-        case '6-3': iframeUrl.value = 'https://color-powder-app.streamlit.app/#inventory'; break;
-        case '7': iframeUrl.value = 'https://color-powder-app.streamlit.app/#purchase'; break;
-        case '8': iframeUrl.value = 'https://color-powder-app.streamlit.app/#sales'; break;
-        case '9': iframeUrl.value = 'https://color-powder-app.streamlit.app/#accounting'; break;
-        case '10': iframeUrl.value = 'https://color-powder-app.streamlit.app/#hr'; break;
+        case '2-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/#customer-list'; break;
+        case '2-2': iframeUrl.value = 'https://color-powder-app.streamlit.app/#recipe'; break;
+        case '3-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/#production-order'; break;
+        case '3-2': iframeUrl.value = 'https://color-powder-app.streamlit.app/#outsourcing'; break;
+        case '4-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/#pantone'; break;
+        case '4-2': iframeUrl.value = 'https://color-powder-app.streamlit.app/#cross-query'; break;
+        case '5': iframeUrl.value = 'https://color-powder-app.streamlit.app/#inventory'; break;
+        case '6': iframeUrl.value = 'https://color-powder-app.streamlit.app/#purchase'; break;
+        case '7': iframeUrl.value = 'https://color-powder-app.streamlit.app/#sales'; break;
+        case '8': iframeUrl.value = 'https://color-powder-app.streamlit.app/#accounting'; break;
+        case '9': iframeUrl.value = 'https://color-powder-app.streamlit.app/#hr'; break;
+        case '10': iframeUrl.value = 'https://color-powder-app.streamlit.app/#backup'; break;
         default: iframeUrl.value = 'https://color-powder-app.streamlit.app/#recipe-table';
       }
     };
