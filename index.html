@@ -49,20 +49,11 @@
 
     /* 左側功能列 */
     .sidebar {
-      width: 260px; /* 稍微加寬 */
+      width: 250px;
       background-color: #f5f5f5;
       padding: 10px;
       box-sizing: border-box;
       overflow-y: auto;
-    }
-
-    /* 調整折疊標題與 icon 的間距 */
-    .el-submenu__title {
-      display: flex;
-      align-items: center;
-    }
-    .el-submenu__icon {
-      margin-right: 6px;
     }
 
     /* 右側 iframe */
@@ -81,64 +72,45 @@
 <body>
 <div id="app">
   <!-- 頂部抬頭 -->
-  <div class="header">
-    佳咊配方管理系統
-  </div>
+  <div class="header">佳咊配方管理系統</div>
 
   <!-- 主體區域 -->
   <div class="main">
     <!-- 左側選單 -->
     <div class="sidebar">
-      <el-menu
-        default-active="1-1"
-        class="el-menu-vertical-demo"
-        @select="handleSelect"
-        unique-opened
-        router
-      >
+      <el-menu default-active="1-1" class="el-menu-vertical-demo" @select="handleSelect">
+        
         <el-sub-menu index="1">
-          <template #title>
-            <el-icon><document /></el-icon>
-            色粉管理
-          </template>
-          <el-menu-item index="1-1"><el-icon><edit /></el-icon>色粉管理</el-menu-item>
+          <template #title><el-icon><Document /></el-icon> 色粉管理</template>
+          <el-menu-item index="1-1"><el-icon><Edit /></el-icon> 色粉管理</el-menu-item>
         </el-sub-menu>
 
-        <el-menu-item index="2"><el-icon><user /></el-icon>客戶</el-menu-item>
+        <el-menu-item index="2"><el-icon><User /></el-icon> 客戶</el-menu-item>
 
         <el-sub-menu index="3">
-          <template #title>
-            <el-icon><collection /></el-icon>
-            配方管理
-          </template>
-          <el-menu-item index="3-1"><el-icon><folder /></el-icon>客戶名單</el-menu-item>
-          <el-menu-item index="3-2"><el-icon><document /></el-icon>配方管理</el-menu-item>
+          <template #title><el-icon><Notebook /></el-icon> 配方管理</template>
+          <el-menu-item index="3-1"><el-icon><UserFilled /></el-icon> 客戶名單</el-menu-item>
+          <el-menu-item index="3-2"><el-icon><DataAnalysis /></el-icon> 配方管理</el-menu-item>
         </el-sub-menu>
 
         <el-sub-menu index="4">
-          <template #title>
-            <el-icon><box /></el-icon>
-            生產管理
-          </template>
-          <el-menu-item index="4-1"><el-icon><document /></el-icon>生產單</el-menu-item>
-          <el-menu-item index="4-2"><el-icon><edit /></el-icon>生產單修改</el-menu-item>
-          <el-menu-item index="4-3"><el-icon><tools /></el-icon>代工排程</el-menu-item>
+          <template #title><el-icon><Box /></el-icon> 生產管理</template>
+          <el-menu-item index="4-1"><el-icon><Document /></el-icon> 生產單</el-menu-item>
+          <el-menu-item index="4-2"><el-icon><Edit /></el-icon> 生產單修改</el-menu-item>
+          <el-menu-item index="4-3"><el-icon><Share /></el-icon> 代工排程</el-menu-item>
         </el-sub-menu>
 
         <el-sub-menu index="5">
-          <template #title>
-            <el-icon><data-analysis /></el-icon>
-            庫存管理
-          </template>
-          <el-menu-item index="5-1"><el-icon><document /></el-icon>期初庫存</el-menu-item>
-          <el-menu-item index="5-2"><el-icon><tickets /></el-icon>用量查詢/排行榜</el-menu-item>
-          <el-menu-item index="5-3"><el-icon><data-board /></el-icon>庫存查詢</el-menu-item>
+          <template #title><el-icon><Files /></el-icon> 庫存管理</template>
+          <el-menu-item index="5-1"><el-icon><DataLine /></el-icon> 期初庫存</el-menu-item>
+          <el-menu-item index="5-2"><el-icon><DataBoard /></el-icon> 用量查詢/排行榜</el-menu-item>
+          <el-menu-item index="5-3"><el-icon><Document /></el-icon> 庫存查詢</el-menu-item>
         </el-sub-menu>
 
-        <el-menu-item index="6"><el-icon><shopping-cart /></el-icon>採購管理</el-menu-item>
-        <el-menu-item index="7"><el-icon><money /></el-icon>銷售管理</el-menu-item>
-        <el-menu-item index="8"><el-icon><ticket /></el-icon>會計系統</el-menu-item>
-        <el-menu-item index="9"><el-icon><user-filled /></el-icon>人力資源</el-menu-item>
+        <el-menu-item index="6"><el-icon><ShoppingCart /></el-icon> 採購管理</el-menu-item>
+        <el-menu-item index="7"><el-icon><Money /></el-icon> 銷售管理</el-menu-item>
+        <el-menu-item index="8"><el-icon><Tickets /></el-icon> 會計系統</el-menu-item>
+        <el-menu-item index="9"><el-icon><UserFilled /></el-icon> 人力資源</el-menu-item>
       </el-menu>
     </div>
 
