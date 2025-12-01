@@ -92,6 +92,11 @@
       background-color: #34495e;
     }
 
+    /* 選中項目字體加粗 */
+    .el-menu-item.is-active {
+      font-weight: bold;
+    }
+
     /* 右側 iframe */
     .content {
       flex: 1;
@@ -182,7 +187,7 @@ const Icons = ElementPlusIconsVue;
 
 const app = createApp({
   setup() {
-    const iframeUrl = ref('https://color-powder-app.streamlit.app/#recipe-table');
+    const iframeUrl = ref('https://color-powder-app.streamlit.app/');
     const isCollapsed = ref(false);
 
     const toggleSidebar = () => {
@@ -191,20 +196,20 @@ const app = createApp({
 
     const handleSelect = (index) => {
       switch(index){
-        case '1-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/#color-powder'; break;
-        case '2-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/#customer-list'; break;
-        case '2-2': iframeUrl.value = 'https://color-powder-app.streamlit.app/#recipe'; break;
-        case '3-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/#production-order'; break;
-        case '3-2': iframeUrl.value = 'https://color-powder-app.streamlit.app/#outsourcing'; break;
-        case '4-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/#pantone'; break;
-        case '4-2': iframeUrl.value = 'https://color-powder-app.streamlit.app/#cross-query'; break;
-        case '5': iframeUrl.value = 'https://color-powder-app.streamlit.app/#inventory'; break;
-        case '6': iframeUrl.value = 'https://color-powder-app.streamlit.app/#purchase'; break;
-        case '7': iframeUrl.value = 'https://color-powder-app.streamlit.app/#sales'; break;
-        case '8': iframeUrl.value = 'https://color-powder-app.streamlit.app/#accounting'; break;
-        case '9': iframeUrl.value = 'https://color-powder-app.streamlit.app/#hr'; break;
-        case '10': iframeUrl.value = 'https://color-powder-app.streamlit.app/#backup'; break;
-        default: iframeUrl.value = 'https://color-powder-app.streamlit.app/#recipe-table';
+        case '1-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=color_powder'; break;
+        case '2-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=customer'; break;
+        case '2-2': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=recipe'; break;
+        case '3-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=production'; break;
+        case '3-2': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=outsourcing'; break;
+        case '4-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=pantone'; break;
+        case '4-2': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=cross_query'; break;
+        case '5': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=inventory'; break;
+        case '6': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=purchase'; break;
+        case '7': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=sales'; break;
+        case '8': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=accounting'; break;
+        case '9': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=hr'; break;
+        case '10': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=backup'; break;
+        default: iframeUrl.value = 'https://color-powder-app.streamlit.app/';
       }
     };
 
