@@ -3,79 +3,155 @@
 <head>
   <meta charset="UTF-8">
   <title>Color Powder 系統</title>
+
+  <!-- Element Plus + Vue -->
   <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css">
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="https://unpkg.com/element-plus/dist/index.full.js"></script>
+  <script src="https://unpkg.com/@element-plus/icons-vue/dist/index.iife.min.js"></script>
+
   <style>
     body { margin: 0; font-family: Arial, sans-serif; }
     #app { display: flex; height: 100vh; }
-    .menu { width: 220px; background: #2c3e50; color: white; }
-    iframe { flex: 1; border: none; }
+    .menu {
+      width: 240px;
+      background: #1f2d3d;
+      color: white;
+      transition: width .3s;
+    }
+    .menu.collapsed {
+      width: 70px;
+    }
+    iframe {
+      flex: 1;
+      border: none;
+    }
+    .menu-header {
+      height: 60px;
+      display: flex;
+      align-items: center;
+      padding-left: 16px;
+      font-size: 20px;
+      color: #fff;
+      border-bottom: 1px solid #3a4750;
+    }
+    .collapse-btn {
+      position: absolute;
+      right: 10px;
+      top: 15px;
+      cursor: pointer;
+      color: #fff;
+    }
   </style>
 </head>
+
 <body>
 <div id="app">
-  <div class="menu">
+  
+  <!-- 左側選單 -->
+  <div :class="['menu', isCollapse ? 'collapsed' : '']">
+    <div class="menu-header">
+      <span v-if="!isCollapse">📘 Color 系統</span>
+      <span class="collapse-btn" @click="isCollapse = !isCollapse">
+        <el-icon><ArrowLeftBold v-if="!isCollapse" /><ArrowRightBold v-else /></el-icon>
+      </span>
+    </div>
+
     <el-menu
-      default-active="1-1"
-      @select="handleSelect"
-      background-color="#2c3e50"
+      :collapse="isCollapse"
+      background-color="#1f2d3d"
       text-color="#fff"
       active-text-color="#ffd04b"
-      class="el-menu-vertical-demo"
+      @select="handleSelect"
     >
+      <!-- 色粉管理 -->
       <el-sub-menu index="1">
-        <template #title>色粉管理</template>
+        <template #title>
+          <el-icon><Brush /></el-icon>
+          <span>色粉管理</span>
+        </template>
         <el-menu-item index="1-1">色粉管理</el-menu-item>
       </el-sub-menu>
+
+      <!-- 配方管理 -->
       <el-sub-menu index="2">
-        <template #title>配方管理</template>
+        <template #title>
+          <el-icon><Folder /></el-icon>
+          <span>配方管理</span>
+        </template>
         <el-menu-item index="2-1">客戶名單</el-menu-item>
         <el-menu-item index="2-2">配方管理</el-menu-item>
       </el-sub-menu>
+
+      <!-- 生產管理 -->
       <el-sub-menu index="3">
-        <template #title>生產管理</template>
+        <template #title>
+          <el-icon><Document /></el-icon>
+          <span>生產管理</span>
+        </template>
         <el-menu-item index="3-1">生產單</el-menu-item>
         <el-menu-item index="3-2">代工排程</el-menu-item>
       </el-sub-menu>
+
+      <!-- 庫存管理 -->
       <el-sub-menu index="4">
-        <template #title>庫存管理</template>
+        <template #title>
+          <el-icon><Box /></el-icon>
+          <span>庫存管理</span>
+        </template>
         <el-menu-item index="4-1">庫存區</el-menu-item>
       </el-sub-menu>
+
+      <!-- 查詢區 -->
       <el-sub-menu index="5">
-        <template #title>查詢區</template>
-        <el-menu-item index="5-1">Pantone色號表</el-menu-item>
+        <template #title>
+          <el-icon><Search /></el-icon>
+          <span>查詢區</span>
+        </template>
+        <el-menu-item index="5-1">Pantone 色號表</el-menu-item>
         <el-menu-item index="5-2">交叉查詢區</el-menu-item>
       </el-sub-menu>
+
     </el-menu>
   </div>
-  
+
+  <!-- 右側內容 iframe -->
   <iframe id="appFrame" :src="iframeUrl"></iframe>
+
 </div>
 
 <script>
 const { createApp, ref } = Vue;
+const { Brush, Folder, Document, Box, Search, ArrowLeftBold, ArrowRightBold } = ElementPlusIconsVue;
+
 createApp({
+  components: { Brush, Folder, Document, Box, Search, ArrowLeftBold, ArrowRightBold },
+
   setup() {
-    const iframeUrl = ref('https://color-powder-app.streamlit.app/?tab=recipe');
+    const iframeUrl = ref("https://color-powder-app.streamlit.app/?tab=recipe");
+    const isCollapse = ref(false);
 
     const handleSelect = (index) => {
       switch(index){
-        case '1-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/?tab=color-powder'; break;
-        case '2-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/?tab=customer-list'; break;
-        case '2-2': iframeUrl.value = 'https://color-powder-app.streamlit.app/?tab=recipe'; break;
-        case '3-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/?tab=production-order'; break;
-        case '3-2': iframeUrl.value = 'https://color-powder-app.streamlit.app/?tab=outsourcing'; break;
-        case '4-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/?tab=inventory'; break;
-        case '5-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/?tab=pantone-table'; break;
-        case '5-2': iframeUrl.value = 'https://color-powder-app.streamlit.app/?tab=cross-query'; break;
-        default: iframeUrl.value = 'https://color-powder-app.streamlit.app/?tab=recipe';
-      }
-    }
+        case "1-1": iframeUrl.value = "https://color-powder-app.streamlit.app/?tab=color-powder"; break;
 
-    return { iframeUrl, handleSelect }
+        case "2-1": iframeUrl.value = "https://color-powder-app.streamlit.app/?tab=customer-list"; break;
+        case "2-2": iframeUrl.value = "https://color-powder-app.streamlit.app/?tab=recipe"; break;
+
+        case "3-1": iframeUrl.value = "https://color-powder-app.streamlit.app/?tab=production-order"; break;
+        case "3-2": iframeUrl.value = "https://color-powder-app.streamlit.app/?tab=outsourcing"; break;
+
+        case "4-1": iframeUrl.value = "https://color-powder-app.streamlit.app/?tab=inventory"; break;
+
+        case "5-1": iframeUrl.value = "https://color-powder-app.streamlit.app/?tab=pantone-table"; break;
+        case "5-2": iframeUrl.value = "https://color-powder-app.streamlit.app/?tab=cross-query"; break;
+      }
+    };
+
+    return { iframeUrl, handleSelect, isCollapse };
   }
-}).mount('#app');
+}).mount("#app");
 </script>
+
 </body>
 </html>
