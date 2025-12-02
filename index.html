@@ -195,21 +195,22 @@ const app = createApp({
     };
 
     const handleSelect = (index) => {
+      const baseUrl = 'https://color-powder-app.streamlit.app/';
       switch(index){
-        case '1-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=color_powder'; break;
-        case '2-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=customer'; break;
-        case '2-2': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=recipe'; break;
-        case '3-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=production'; break;
-        case '3-2': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=outsourcing'; break;
-        case '4-1': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=pantone'; break;
-        case '4-2': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=cross_query'; break;
-        case '5': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=inventory'; break;
-        case '6': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=purchase'; break;
-        case '7': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=sales'; break;
-        case '8': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=accounting'; break;
-        case '9': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=hr'; break;
-        case '10': iframeUrl.value = 'https://color-powder-app.streamlit.app/?page=backup'; break;
-        default: iframeUrl.value = 'https://color-powder-app.streamlit.app/';
+        case '1-1': iframeUrl.value = baseUrl + '?menu=色粉管理'; break;
+        case '2-1': iframeUrl.value = baseUrl + '?menu=客戶名單'; break;
+        case '2-2': iframeUrl.value = baseUrl + '?menu=配方管理'; break;
+        case '3-1': iframeUrl.value = baseUrl + '?menu=生產單管理'; break;
+        case '3-2': iframeUrl.value = baseUrl + '?menu=代工排程'; break;
+        case '4-1': iframeUrl.value = baseUrl + '?menu=Pantone色號表'; break;
+        case '4-2': iframeUrl.value = baseUrl + '?menu=交叉查詢區'; break;
+        case '5': iframeUrl.value = baseUrl + '?menu=庫存區'; break;
+        case '6': iframeUrl.value = baseUrl + '?menu=採購管理'; break;
+        case '7': iframeUrl.value = baseUrl + '?menu=銷售管理'; break;
+        case '8': iframeUrl.value = baseUrl + '?menu=會計系統'; break;
+        case '9': iframeUrl.value = baseUrl + '?menu=人力資源'; break;
+        case '10': iframeUrl.value = baseUrl + '?menu=匯入備份'; break;
+        default: iframeUrl.value = baseUrl;
       }
     };
 
